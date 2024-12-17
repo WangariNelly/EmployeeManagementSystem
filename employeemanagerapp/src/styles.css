@@ -1,1 +1,167 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  thead {
+    background-color: #343a40;
+    color: white;
+  }
+  
+  /* Buttons inside table */
+  .table td button {
+    margin: 5px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .table td button.btn-success {
+    background-color: #28a745;
+  }
+  
+  .table td button.btn-primary {
+    background-color: #007bff;
+  }
+  
+  .table td button.btn-danger {
+    background-color: #dc3545;
+  }
+  
+  /* Hover effects */
+  .table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .table td button:hover {
+    opacity: 0.9;
+  }
+  
+  /* Fixing spacing issues */
+  .form-inline input {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white !important;
+  }
+  
+  .navbar {
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    margin-right: 10px;
+  }
+  
+  /* General modal styling */
+.modal {
+    display: none; /* Hide modals by default */
+    position: fixed;
+    z-index: 1050; /* Stay on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding-top: 100px; /* Position modal content */
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Default modal width */
+    max-width: 500px; /* Limit width */
+    border-radius: 8px;
+  }
+
+  .modal.show {
+    display: block;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Button inside modal */
+  button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #da190b;
+  }
+  
+  /* Show modal when triggered */
+  .modal.show {
+    display: block;
+  }
+  
+  /* Close modal styling (optional if you have a close button inside modals) */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Responsive buttons alignment */
+  @media (max-width: 768px) {
+    .table td {
+      display: block;
+      text-align: left;
+    }
+  
+    .table td button {
+      width: 100%;
+      margin: 5px 0;
+    }
+  
+    .form-inline input {
+      width: 80%;
+    }
+  }
+  
