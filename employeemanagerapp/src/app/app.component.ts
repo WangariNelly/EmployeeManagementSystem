@@ -37,10 +37,8 @@ export class AppComponent implements OnInit {
   }
 
   public onAddEmployee(addForm: NgForm): void {
-    // document.getElementById('add-employee-form').click();
     this.employeeService.createEmployee(addForm.value).subscribe(
       (response: Employee) => {
-        console.log(response);
         this.getEmployees();
         addForm.reset();
       },
@@ -54,7 +52,6 @@ export class AppComponent implements OnInit {
   public onUpdateEmployee(employee: Employee): void {
     this.employeeService.updateEmployee(employee).subscribe(
       (response: Employee) => {
-        console.log(response);
         this.getEmployees();
       },
       (error: HttpErrorResponse) => {
@@ -66,7 +63,6 @@ export class AppComponent implements OnInit {
   public onDeleteEmployee(employeeId: number): void {
     this.employeeService.deleteEmployee(employeeId).subscribe(
       (response: void) => {
-        console.log(response);
         this.getEmployees();
       },
       (error: HttpErrorResponse) => {
@@ -76,7 +72,6 @@ export class AppComponent implements OnInit {
   }
 
   public searchEmployees(key: string): void {
-    console.log(key);
     const results: Employee[] = [];
     for (const employee of this.employees) {
       if (
@@ -93,7 +88,6 @@ export class AppComponent implements OnInit {
     if (!key) {
       this.getEmployees();
     }
-    // this.employees = results.length === 0 || !key ? this.employees : results;
   }
 
   public onOpenModal(employee: Employee | null, mode: string): void {
@@ -102,6 +96,7 @@ export class AppComponent implements OnInit {
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
+    
     if (mode === 'add') {
       button.setAttribute('data-target', '#addEmployeeModal');
     }
