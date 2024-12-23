@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Employee <span class="sr-only">(current)</span></a>
+        <a class="nav-link" (click)="onOpenModal(null,'add')">Add Employee <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -24,16 +24,20 @@
       <th>Email</th>
       <th>Phone</th>
       <th>Job Title</th>
+      <th>City</th>
+      <th>ImageUrl</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees">
-      <td>{{ employee.firstname }}</td>
-      <td>{{ employee.lastname }}</td>
+      <td>{{ employee.firstName }}</td>
+      <td>{{ employee.lastName }}</td>
       <td>{{ employee.email }}</td>
       <td>{{ employee.phone }}</td>
       <td>{{ employee.jobTitle }}</td>
+      <td>{{ employee.city }}</td>
+      <td>{{ employee.imageUrl }}</td>
       <td>
         <button (click)="onOpenModal(employee, 'edit')">Edit</button>
         <button (click)="onOpenModal(employee, 'delete')">Delete</button>
@@ -43,14 +47,17 @@
 </table>
 
 <!-- Add Employee Modal -->
-<div id="addEmployeeModal" class="modal">
+<div id="addEmployeeModal" class="modal" >
   <div class="modal-content">
+    <span class="close" (click)="onCloseModal()">&times;</span>
     <form #addForm="ngForm" (ngSubmit)="onAddEmployee(addForm)">
-      <input type="text" name="firstname" ngModel placeholder="First Name" required />
-      <input type="text" name="lastname" ngModel placeholder="Last Name" required />
+      <input type="text" name="firstName" ngModel placeholder="First Name" required />
+      <input type="text" name="lastName" ngModel placeholder="Last Name" required />
       <input type="email" name="email" ngModel placeholder="Email" required />
       <input type="text" name="phone" ngModel placeholder="Phone" required />
       <input type="text" name="jobTitle" ngModel placeholder="Job Title" required />
+      <input type="text" name="city" ngModel placeholder="City" required />
+      <input type="text" name="Image" ngModel placeholder="ImageUrl" required />
       <button type="submit">Add Employee</button>
     </form>
   </div>
@@ -59,12 +66,14 @@
 <!-- Update Employee Modal -->
 <div id="updateEmployeeModal" class="modal">
   <div class="modal-content">
+    <span class="close" (click)="onCloseModal()">&times;</span>
     <form #updateForm="ngForm" (ngSubmit)="onUpdateEmployee(editEmployee)">
-      <input type="text" name="firstname" [(ngModel)]="editEmployee.firstname" placeholder="First Name" />
-      <input type="text" name="lastname" [(ngModel)]="editEmployee.lastname" placeholder="Last Name" />
+      <input type="text" name="firstName" [(ngModel)]="editEmployee.firstName" placeholder="First Name" />
+      <input type="text" name="lastName" [(ngModel)]="editEmployee.lastName" placeholder="Last Name" />
       <input type="email" name="email" [(ngModel)]="editEmployee.email" placeholder="Email" />
       <input type="text" name="phone" [(ngModel)]="editEmployee.phone" placeholder="Phone" />
       <input type="text" name="jobTitle" [(ngModel)]="editEmployee.jobTitle" placeholder="Job Title" />
+      <input type="text" name="city" [(ngModel)]="editEmployee.city" placeholder="City" />
       <button type="submit">Update Employee</button>
     </form>
   </div>
@@ -73,6 +82,7 @@
 <!-- Delete Employee Modal -->
 <div id="deleteEmployeeModal" class="modal">
   <div class="modal-content">
+    <span class="close" (click)="onCloseModal()">&times;</span>
     <p>Are you sure you want to delete this employee?</p>
     <button (click)="onDeleteEmployee(deleteEmployee.id)">Yes</button>
     <button>No</button>

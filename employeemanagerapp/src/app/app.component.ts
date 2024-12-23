@@ -71,44 +71,79 @@ export class AppComponent implements OnInit {
     );
   }
 
+  // public searchEmployees(key: string): void {
+  //   const results: Employee[] = [];
+  //   for (const employee of this.employees) {
+  //     if (
+  //       employee.firstName.toLowerCase().includes(key.toLowerCase()) ||
+  //       employee.lastName.toLowerCase().includes(key.toLowerCase()) ||
+  //       employee.email.toLowerCase().includes(key.toLowerCase()) ||
+  //       employee.phone.toLowerCase().includes(key.toLowerCase()) ||
+  //       employee.jobTitle.toLowerCase().includes(key.toLowerCase())
+  //     ) {
+  //       results.push(employee);
+  //     }
+  //   }
+  //   this.employees = results;
+  //   if (!key) {
+  //     this.getEmployees();
+  //   }
+  // }
   public searchEmployees(key: string): void {
+    if (!key) {
+      this.getEmployees();
+      return;
+    }
+  
+    const lowerCaseKey = key.toLowerCase();
     const results: Employee[] = [];
+  
     for (const employee of this.employees) {
       if (
-        employee.firstname.toLowerCase().includes(key.toLowerCase()) ||
-        employee.lastname.toLowerCase().includes(key.toLowerCase()) ||
-        employee.email.toLowerCase().includes(key.toLowerCase()) ||
-        employee.phone.toLowerCase().includes(key.toLowerCase()) ||
-        employee.jobTitle.toLowerCase().includes(key.toLowerCase())
+        (employee.firstName?.toLowerCase() || '').includes(lowerCaseKey) ||
+        (employee.lastName?.toLowerCase() || '').includes(lowerCaseKey) ||
+        (employee.email?.toLowerCase() || '').includes(lowerCaseKey) ||
+        (employee.phone?.toLowerCase() || '').includes(lowerCaseKey) ||
+        (employee.jobTitle?.toLowerCase() || '').includes(lowerCaseKey)
       ) {
         results.push(employee);
       }
     }
-    this.employees = results;
-    if (!key) {
-      this.getEmployees();
-    }
-  }
 
-  public onOpenModal(employee: Employee | null, mode: string): void {
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-    
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addEmployeeModal');
-    }
-    if (mode === 'edit' && employee) {
-      this.editEmployee = employee;
-      button.setAttribute('data-target', '#updateEmployeeModal');
-    }
-    if (mode === 'delete' && employee) {
-      this.deleteEmployee = employee;
-      button.setAttribute('data-target', '#deleteEmployeeModal');
-    }
-    container?.appendChild(button);
-    button.click();
+    this.employees = results;
+  }
+  
+
+
+public onOpenModal(employee: Employee | null, mode: string): void {
+  const addModal = document.getElementById('addEmployeeModal');
+  const editModal = document.getElementById('updateEmployeeModal');
+  const deleteModal = document.getElementById('deleteEmployeeModal');
+
+  // Reset all modals to hidden
+  if (addModal) addModal.classList.remove('show');
+  if (editModal) editModal.classList.remove('show');
+  if (deleteModal) deleteModal.classList.remove('show');
+
+  // Open specific modal
+  if (mode === 'add' && addModal) {
+    addModal.classList.add('show');
+  }
+  if (mode === 'edit' && editModal && employee) {
+    this.editEmployee = employee;
+    editModal.classList.add('show');
+  }
+  if (mode === 'delete' && deleteModal && employee) {
+    this.deleteEmployee = employee;
+    deleteModal.classList.add('show');
   }
 }
+
+
+public onCloseModal(): void {
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach((modal) => modal.classList.remove('show'));
+}
+
+
+ }
