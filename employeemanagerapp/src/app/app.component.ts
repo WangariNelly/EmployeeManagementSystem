@@ -21,17 +21,18 @@ export class AppComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getEmployees();
   }
 
   public getEmployees(): void {
     this.employeeService.getEmployees().subscribe(
       (response: Employee[]) => {
+        console.log('Employees fetched:', response);
         this.employees = response;
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        console.error(error.message);
       }
     );
   }
@@ -60,35 +61,17 @@ export class AppComponent implements OnInit {
     );
   }
 
-  public onDeleteEmployee(employeeId: number): void {
-    this.employeeService.deleteEmployee(employeeId).subscribe(
+  public onDeleteEmployee(id: number): void {
+    this.employeeService.deleteEmployee(id).subscribe(
       (response: void) => {
         this.getEmployees();
       },
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        alert('Not deleted!');
       }
     );
   }
 
-  // public searchEmployees(key: string): void {
-  //   const results: Employee[] = [];
-  //   for (const employee of this.employees) {
-  //     if (
-  //       employee.firstName.toLowerCase().includes(key.toLowerCase()) ||
-  //       employee.lastName.toLowerCase().includes(key.toLowerCase()) ||
-  //       employee.email.toLowerCase().includes(key.toLowerCase()) ||
-  //       employee.phone.toLowerCase().includes(key.toLowerCase()) ||
-  //       employee.jobTitle.toLowerCase().includes(key.toLowerCase())
-  //     ) {
-  //       results.push(employee);
-  //     }
-  //   }
-  //   this.employees = results;
-  //   if (!key) {
-  //     this.getEmployees();
-  //   }
-  // }
   public searchEmployees(key: string): void {
     if (!key) {
       this.getEmployees();
