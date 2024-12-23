@@ -78,3 +78,5 @@ Feel free to fork this repository and submit pull requests to improve the projec
 
 ---
 
+## **Swagger**
+http://localhost:8080/swagger-ui/index.html#/
